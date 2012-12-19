@@ -2,15 +2,18 @@
 
 require 'rainbow' # this is for the colors. need to run 'gem install rainbow'
 
-def puts_line(char = '-')
-  puts((char * 80).color(:green))
+def puts_line(character = '-')
+  line = character * 80 # gets me 80 dashes
+  puts line.color(:green) # prints it out in green
 end
+
+puts_line
 
 def puts_headline(string)
   puts string.color(:yellow)
 end
 
-#########################################################################
+# #########################################################################
 
 # parsing CSV
 def csv
@@ -51,7 +54,7 @@ def csv
 end
 csv
 
-#########################################################################
+# #########################################################################
 
 # determine size of all fiels in a directory
 def directories
@@ -65,7 +68,7 @@ def directories
 end
 directories
 
-#########################################################################
+# #########################################################################
 
 def email
   puts_line '='
@@ -75,7 +78,7 @@ def email
 end
 email
 
-#########################################################################
+# #########################################################################
 
 def backup
   puts_line '='
@@ -84,7 +87,7 @@ def backup
 end
 backup
 
-#########################################################################
+# #########################################################################
 
 def twitter
   puts_line '='
@@ -95,16 +98,17 @@ def twitter
 
   puts_headline 'Getting user details'
   user = Twitter.user('langalex')
-  puts "Name: #{user[:name]}"
+  puts "Name: " + user[:name]
   puts "Bio: #{user[:description]}"
 
   puts_line
   puts_headline 'Getting latest tweets'
   tweets = Twitter.user_timeline("langalex")
+
   puts tweets.map{ |tweet| tweet.text }
 
   puts_line
   puts_headline "Search (#railsgirls):"
-  puts Twitter.search("#railsgirls", :count => 10).results.map{|tweet| tweet.text }
+  puts Twitter.search("#railsgirls", {:count => 10}).results.map{|tweet| tweet.text }
 end
 twitter
