@@ -10,8 +10,9 @@ get '/hello' do
 end
 
 # get /sum?one=1&two=4
+# {:one => '1', :two => '4'}
 get '/sum' do
-  sum = params[:one].to_f + params[:two].to_f
+  sum = params[:one].to_i + params[:two].to_i
   "The sum of #{params[:one]} and #{params[:two]} is #{sum}"
 end
 
